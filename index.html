@@ -5,11 +5,24 @@
     </title>
 </head>
 <body>
-    <div class="text">
-
-    </div>
+  <p>WELCOME TO TYPING TEST</p>
+  <p>Click the start button to start the test</p>
+  <button class="start-js">Start</button>
+  <button class="show-js" onclick = "display();">Show text</button>
+  <button class ="clear-js" onclick="clearScreen();">Clear Screen</button>
+  <div class="display"></div>
 <script>
+    let words = ["life" ,"is","beautiful","and","bitch","but","we","ball","yay","slay","cutie","lmao","that","was","a","lot"];
+    let text = words.join(' ');
+    function display(){
+        document.querySelector('.display').innerHTML = text;
+
+
+    }
+    function clearScreen(){
+        document.querySelector('.display').innerHTML = '';
+    }
 
 </script>
 </body>
-</html> <div class="></div>
+</html>
