@@ -36,17 +36,13 @@
         console.log(characterIndex);
         console.log(counter)
       }
-      
-      else{
-     
-        console.log('error');
-      }
-
- 
-        if(characterIndex ===words[wordIndex].length){
-            wordIndex +=1;
+    
+        if(characterIndex >= 1 && event.key === ' '){
+             wordIndex +=1;
             characterIndex = 0;
+
         }
+
      }
       
   
