@@ -28,26 +28,26 @@
 
     document.querySelector('.input-js').addEventListener('keydown', function(event){
     
-      if(words[wordIndex][characterIndex] === event.key){
-        
-        characterIndex+=1;
-        counter += 1;
-        console.log(wordIndex);
-        console.log(characterIndex);
-        console.log(counter)
-      }
-    
-        if(characterIndex >= 1 && event.key === ' '){
-             wordIndex +=1;
-            characterIndex = 0;
-
-        }
-
-     }
+    if(characterIndex < words[wordIndex].length && words[wordIndex][characterIndex] === event.key){
+    counter += 1;
+    console.log(wordIndex);
+    console.log(characterIndex);
+    console.log(counter)
+}
+if (event.key !== ' ' && event.key !== 'Backspace' && characterIndex < words[wordIndex].length){
+    characterIndex+=1;
+}
+if(characterIndex >= 1 && event.key === ' '){
+    wordIndex +=1;
+    characterIndex = 0;
+}
+if(characterIndex >= 1 && event.key === 'Backspace'){
+    characterIndex-=1;
+}
       
   
     
-)
+    })
     
    
 </script>
