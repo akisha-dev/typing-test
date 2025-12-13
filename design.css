@@ -1,0 +1,26 @@
+.welcome{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.instr{
+  text-align: center;
+}
+.display{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:22px;
+    font-weight: bold;
+    color:rgb(141, 136, 136)
+}
+.untyped{
+    color:gray;
+}
+.correct{
+    color:black;
+}
+.wrong{
+    color:red;
+}
+input{
+    opacity:0;
+}
