@@ -14,7 +14,7 @@
   <div class="display"></div>
   <input class="input-js" placeholder="Type Here" >
 <script>
-    let words = ["life" ,"gets","better","and","but","we","ball","yay","slay","cutie","lmao","that","was","a","lot"];
+    let words = ["success", "comes", "from", "consistent", "effort", "and", "dedication", "every", "small", "step", "forward", "brings", "you", "closer", "to", "your", "goals", "keep", "practicing", "and", "never", "give", "up", "on", "your", "dreams"];
     let text = words.join(' ');
     let allspans = [];
     let spanIndex =0;
@@ -105,7 +105,7 @@ if(characterIndex >= 1 && event.key === 'Backspace' && spanIndex > 0) {
     characterIndex-=1;
     spanIndex -= 1;
     allspans[spanIndex].classList.replace('wrong','untyped');
-    allspans[spanIndex].classList.replace('correct','untyped');
+
     allspans[spanIndex].classList.add('cursor');
 
 }
