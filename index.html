@@ -39,6 +39,8 @@
         allspans.push(spaceSpan);
         document.querySelector('.display').appendChild(spaceSpan);
 }
+      allspans[0].classList.add('cursor');
+
   
     }
 
@@ -65,9 +67,11 @@
     console.log(characterIndex);
     console.log(counter);
    allspans[spanIndex].classList.replace('untyped','correct');
-   if(allspans[spanIndex].classList = 'wrong'){
+   if(allspans[spanIndex].classList.contains('wrong')){
     allspans[spanIndex].classList.replace('wrong','correct');
+
    }
+
 
     
     }else{
@@ -79,22 +83,30 @@
     }
 
 if (event.key !== ' ' && event.key !== 'Backspace' && characterIndex < words[wordIndex].length){
+   allspans[spanIndex].classList.remove('cursor');
     characterIndex+=1;
     spanIndex+=1;
+    allspans[spanIndex].classList.add('cursor');
+   
     
 
 }
 
 if(characterIndex >= 1 && event.key === ' '){
+   allspans[spanIndex].classList.remove('cursor');
     wordIndex +=1;
     characterIndex = 0;
     spanIndex+=1;
-    
+    allspans[spanIndex].classList.add('cursor');
+        
 }
-if(characterIndex >= 1 && event.key === 'Backspace'){
+if(characterIndex >= 1 && event.key === 'Backspace' && spanIndex > 0) {
+    allspans[spanIndex].classList.remove('cursor');
     characterIndex-=1;
-    spanIndex -= 1;     
-
+    spanIndex -= 1;
+    allspans[spanIndex].classList.replace('wrong','untyped');
+    allspans[spanIndex].classList.replace('correct','untyped');
+    allspans[spanIndex].classList.add('cursor');
 
 }
     
