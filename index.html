@@ -14,17 +14,21 @@
   <div class="display"></div>
   <input class="input-js" placeholder="Type Here" >
 <script>
-    let words = ["success", "comes", "from", "consistent", "effort", "and", "dedication", "every", "small", "step", "forward", "brings", "you", "closer", "to", "your", "goals", "keep", "practicing", "and", "never", "give", "up", "on", "your", "dreams"];
+    let words = ["success", "comes", "from", "consistent", "effort", "and", "dedication", "every", "small", "step", "forward", "brings", "you", "closer", "to", "your", "goals", "keep", "practicing", "and", "never", "give", "up", "on", "your", "dreams","when", "you", "practice", "typing", "every", "day", "your", "fingers", "learn", "where", "each", "key", "is", "located", "without", "looking", "down", "at", "the",
+     "keyboard", "this", "muscle", "memory", "helps", "you", "type", "faster", "and", "with", "fewer", "mistakes", "over", "time"];
+
     let text = words.join(' ');
     let allspans = [];
     let spanIndex =0;
+   
+
     function display(){
         allspans = []
         spanIndex = 0
         wordIndex = 0
         characterIndex = 0
         counter = 0
-        for(i=0;i<words.length;i++){
+  for(i=0;i<words.length;i++){
     for(j=0;j<words[i].length;j++){
         let span = document.createElement('span');
         span.classList.add('untyped');
@@ -39,10 +43,11 @@
         allspans.push(spaceSpan);
         document.querySelector('.display').appendChild(spaceSpan);
 }
-      allspans[0].classList.add('cursor');
 
   
     }
+    
+      allspans[0].classList.add('cursor');
 
     }
     function clearScreen(){
@@ -57,59 +62,82 @@
     let wordIndex = 0;
     let characterIndex =0;
     let counter =0;
+    let totalKeystrokes =0;
 
     document.addEventListener('keydown', function(event){
-    
+        if(event.key!=' '&& event.key!='Backspace'){
+        totalKeystrokes +=1;}
 
-    if(characterIndex < words[wordIndex].length && words[wordIndex][characterIndex] === event.key){
-    counter += 1;
-    console.log(wordIndex);
-    console.log(characterIndex);
-    console.log(counter);
-   allspans[spanIndex].classList.replace('untyped','correct');
-   if(allspans[spanIndex].classList.contains('wrong')){
-    allspans[spanIndex].classList.replace('wrong','correct');
-
-   }
-
-
-    
-    }else{
-        if(event.key!== ' '){
-        allspans[spanIndex].classList.replace('untyped','wrong');
-        }
-         
-    
-    }
-
-if (event.key !== ' ' && event.key !== 'Backspace' && characterIndex < words[wordIndex].length){
-   allspans[spanIndex].classList.remove('cursor');
-    characterIndex+=1;
-    spanIndex+=1;
-    allspans[spanIndex].classList.add('cursor');
-   
-    
-
-}
-
-if(characterIndex >= 1 && event.key === ' '){
-   allspans[spanIndex].classList.remove('cursor');
-    wordIndex +=1;
-    characterIndex = 0;
-    spanIndex+=1;
-    allspans[spanIndex].classList.add('cursor');
+if(event.key === 'Backspace') {
+    if(spanIndex > 0) {
+        allspans[spanIndex].classList.remove('cursor');
+        spanIndex -= 1;
         
+        if(allspans[spanIndex].textContent === ' ') {
+            wordIndex -= 1;
+            characterIndex = words[wordIndex].length;
+        } else {
+            characterIndex -= 1;
+        }
+        
+        if(allspans[spanIndex].classList.contains('correct')) {
+            allspans[spanIndex].classList.replace('correct','untyped');
+        } else if(allspans[spanIndex].classList.contains('wrong')) {
+            allspans[spanIndex].classList.replace('wrong','untyped');
+        }
+        
+        allspans[spanIndex].classList.add('cursor');
+    }
+    return;
 }
-if(characterIndex >= 1 && event.key === 'Backspace' && spanIndex > 0) {
+
+
+if(event.key === ' ') {
+if(characterIndex > 0 && wordIndex < words.length - 1) {
     allspans[spanIndex].classList.remove('cursor');
-    characterIndex-=1;
-    spanIndex -= 1;
-    allspans[spanIndex].classList.replace('wrong','untyped');
-
-    allspans[spanIndex].classList.add('cursor');
-
-}
     
+    if(characterIndex === words[wordIndex].length) {
+        allspans[spanIndex].classList.replace('untyped','correct');
+} else {
+    allspans[spanIndex].classList.replace('untyped','wrong');
+}
+        
+        wordIndex += 1;
+        characterIndex = 0;
+        spanIndex += 1;
+        allspans[spanIndex].classList.add('cursor');
+    }
+    return;
+}
+
+if(characterIndex < words[wordIndex].length && spanIndex < allspans.length) {
+if(words[wordIndex][characterIndex] === event.key) {
+    allspans[spanIndex].classList.replace('untyped','correct');
+    counter += 1;
+    } else {
+        if(event.key.length === 1) {
+            allspans[spanIndex].classList.replace('untyped','wrong');
+   } else {
+            return;
+        }
+    }
+    
+    allspans[spanIndex].classList.remove('cursor');
+    characterIndex += 1;
+    spanIndex += 1;
+    
+    if(spanIndex < allspans.length) {
+        allspans[spanIndex].classList.add('cursor');
+      }
+
+      console.log(totalKeystrokes);
+}
+
+let accuracy = (counter / totalKeystrokes) * 100;
+console.log(accuracy);
+
+
+
 
 })
 
