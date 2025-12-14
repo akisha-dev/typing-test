@@ -28,6 +28,8 @@
         wordIndex = 0
         characterIndex = 0
         counter = 0
+       totalKeystrokes = 0    
+       startTime = null  
   for(i=0;i<words.length;i++){
     for(j=0;j<words[i].length;j++){
         let span = document.createElement('span');
@@ -56,6 +58,8 @@
         wordIndex = 0
         characterIndex = 0
         counter = 0
+        totalKeystrokes = 0    
+       startTime = null  
         document.querySelector('.display').innerHTML = '';
         
     }
@@ -63,8 +67,13 @@
     let characterIndex =0;
     let counter =0;
     let totalKeystrokes =0;
+    let startTime = null;
 
     document.addEventListener('keydown', function(event){
+
+       if(startTime === null) {
+        startTime = Date.now();  
+    }
         if(event.key!=' '&& event.key!='Backspace'){
         totalKeystrokes +=1;}
 
@@ -133,13 +142,20 @@ if(words[wordIndex][characterIndex] === event.key) {
       console.log(totalKeystrokes);
 }
 
-let accuracy = (counter / totalKeystrokes) * 100;
-console.log(accuracy);
+if(spanIndex >= allspans.length && startTime !== null) {
+    let accuracy = (counter / totalKeystrokes) * 100;
+    let timetaken = (Date.now() - startTime) / 1000;
+    let wpm = (totalKeystrokes / 5) / (timetaken / 60);
+    
+    console.log('Test Complete!');
+    console.log('Time:', timetaken, 'seconds');
+    console.log('WPM:', wpm);
+    console.log('Accuracy:', accuracy, '%');
+}
+
+}) 
 
 
-
-
-})
 
 
    
