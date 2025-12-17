@@ -13,8 +13,13 @@
   <button class ="clear-js" onclick="clearScreen();">Clear Screen</button>
   <div class="display"></div>
   <input class="input-js" placeholder="Type Here" >
+  <div class="result-js">
+    <p class="timetaken"></p>
+    <p class="Accuracy"></p>
+    <p class="wpm"></p>
+  </div>
 <script>
-    let words = ["success", "comes", "from", "consistent", "effort", "and", "dedication", "every", "small", "step", "forward", "brings", "you", "closer", "to", "your", "goals", "keep", "practicing", "and", "never", "give", "up", "on", "your", "dreams","when", "you", "practice", "typing", "every", "day", "your", "fingers", "learn", "where", "each", "key", "is", "located", "without", "looking", "down", "at", "the",
+    let words = ["when", "you", "practice", "typing", "every", "day", "your", "fingers", "learn", "where", "each", "key", "is", "located", "without", "looking", "down", "at", "the",
      "keyboard", "this", "muscle", "memory", "helps", "you", "type", "faster", "and", "with", "fewer", "mistakes", "over", "time"];
 
     let text = words.join(' ');
@@ -23,6 +28,8 @@
    
 
     function display(){
+        document.querySelector('.input-js').focus();
+       testComplete = false;
         allspans = []
         spanIndex = 0
         wordIndex = 0
@@ -53,6 +60,7 @@
 
     }
     function clearScreen(){
+       testComplete = false;
         allspans = []
         spanIndex = 0
         wordIndex = 0
@@ -60,6 +68,7 @@
         counter = 0
         totalKeystrokes = 0    
        startTime = null  
+       
         document.querySelector('.display').innerHTML = '';
         
     }
@@ -68,23 +77,27 @@
     let counter =0;
     let totalKeystrokes =0;
     let startTime = null;
+    let testComplete = false;
+
 
     document.addEventListener('keydown', function(event){
 
        if(startTime === null) {
         startTime = Date.now();  
     }
-        if(event.key!=' '&& event.key!='Backspace'){
+        if(event.key!='Backspace'){
         totalKeystrokes +=1;}
 
 if(event.key === 'Backspace') {
+  
     if(spanIndex > 0) {
         allspans[spanIndex].classList.remove('cursor');
         spanIndex -= 1;
+
         
         if(allspans[spanIndex].textContent === ' ') {
             wordIndex -= 1;
-            characterIndex = words[wordIndex].length;
+            characterIndex = words[wordIndex].length-1;
         } else {
             characterIndex -= 1;
         }
@@ -102,11 +115,13 @@ if(event.key === 'Backspace') {
 
 
 if(event.key === ' ') {
+
 if(characterIndex > 0 && wordIndex < words.length - 1) {
     allspans[spanIndex].classList.remove('cursor');
     
     if(characterIndex === words[wordIndex].length) {
         allspans[spanIndex].classList.replace('untyped','correct');
+        counter+=1;
 } else {
     allspans[spanIndex].classList.replace('untyped','wrong');
 }
@@ -120,6 +135,7 @@ if(characterIndex > 0 && wordIndex < words.length - 1) {
 }
 
 if(characterIndex < words[wordIndex].length && spanIndex < allspans.length) {
+    
 if(words[wordIndex][characterIndex] === event.key) {
     allspans[spanIndex].classList.replace('untyped','correct');
     counter += 1;
@@ -136,24 +152,30 @@ if(words[wordIndex][characterIndex] === event.key) {
     spanIndex += 1;
     
     if(spanIndex < allspans.length) {
+
         allspans[spanIndex].classList.add('cursor');
       }
 
       console.log(totalKeystrokes);
 }
 
-if(spanIndex >= allspans.length && startTime !== null) {
+if(spanIndex >= allspans.length && startTime !== null&&!testComplete) {
+    testComplete = true;
     let accuracy = (counter / totalKeystrokes) * 100;
     let timetaken = (Date.now() - startTime) / 1000;
     let wpm = (totalKeystrokes / 5) / (timetaken / 60);
     
-    console.log('Test Complete!');
-    console.log('Time:', timetaken, 'seconds');
-    console.log('WPM:', wpm);
-    console.log('Accuracy:', accuracy, '%');
+   document.querySelector('.timetaken').innerHTML=`Time : ${timetaken.toFixed(2)}`;
+document.querySelector('.Accuracy').innerHTML=`Accuracy : ${accuracy.toFixed(2)}%`;
+document.querySelector('.wpm').innerHTML=`WPM : ${wpm.toFixed(2)}`;}
 }
 
-}) 
+)
+
+
+
+
+
 
 
 
