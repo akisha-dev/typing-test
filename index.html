@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <head>
     <title>
-        MonkeyType Clone
+        Typing Test
     </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href=design.css>
 </head>
 <body>
   <div class="welcome">
-  <p><u>WELCOME TO TYPING TEST</u></p></div>
-  <p class="instr">Click the start button to start the test</p>
+  <div style="font-size:35px;
+    font-weight:bold; ">TYPING TEST</div> 
+  <div style="padding:14px 10px 15px 10px">Take a typing Test to check your speed and accuracy *^____^*</div>
+</div>
+  <div class="newinst">
+  <p style="margin:7px 7px 8px 7px;">Press Start to take the test!</p>
+</div>
+ <div class="button-container">
   <button class="show-js" onclick = "display();">Start</button>
   <button class ="clear-js" onclick="clearScreen();">Clear Screen</button>
+</div>
   <div class="display"></div>
   <input class="input-js" placeholder="Type Here" >
   <div class="result-js">
