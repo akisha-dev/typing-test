@@ -8,6 +8,7 @@
 
     function display(){
         document.querySelector('.input-js').focus();
+        document.querySelector('.display').innerHTML = ''; 
        testComplete = false;
         allspans = []
         spanIndex = 0
