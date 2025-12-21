@@ -10,10 +10,6 @@ A minimalist typing speed test application built with vanilla JavaScript.
 - Clean, modern UI with responsive design
 - Backspace support for corrections
 
-## Live Demo
-
-[Try it here](https://yourusername.github.io/monkeytypee)
-
 ## How It Works
 
 1. Click **Start** to begin the test
@@ -32,11 +28,12 @@ A minimalist typing speed test application built with vanilla JavaScript.
 
 ## Project Structure
 
-monkeytypee/
-├── index.html          # Main HTML structure
-├── design.css          # Styling and responsive design
-├── script-old.js       # Core typing logic
-└── README.md           # Documentation
+typing-test/
+│
+├── index.html # Main HTML structure
+├── design.css # Styling and responsive design
+├── script.js # Core typing logic
+└── README.md # Project documentation
 
 
 ## Known Issues
@@ -46,13 +43,18 @@ monkeytypee/
 
 ## Future Improvements
 
-- [ ] Add multiple difficulty levels
-- [ ] Include random word generation
-- [ ] Add leaderboard functionality
-- [ ] Support for multiple languages
-- [ ] Dark/light theme toggle
+- Random word generation
+- Difficulty levels
+- Dark / light theme toggle
+- Leaderboard support
+- Multi-language typing support
+
 
 
 ## Acknowledgments
 
 Inspired by Monkeytype and other typing test applications.
+
+## Live Demo
+
+[Try it here](https://akisha-dev.github.io/typing-test/)
