@@ -63,6 +63,7 @@
 
 
     document.addEventListener('keydown', function(event){
+   if (allspans.length === 0 || testComplete) return;
 
        if(startTime === null) {
         startTime = Date.now();  
@@ -143,7 +144,7 @@ if(words[wordIndex][characterIndex] === event.key) {
         allspans[spanIndex].classList.add('cursor');
       }
 
-      console.log(totalKeystrokes);
+
 }
 
 if(spanIndex >= allspans.length && startTime !== null&&!testComplete) {
