@@ -42,10 +42,13 @@ typing-test/
 ├── design.css      # Styling and responsive design
 ├── script.js       # Core typing logic
 └── README.md       # Project documentation
-Known Issues
-Mobile keyboard input may behave unexpectedly
 
-Very fast typing (>120 WPM) may occasionally skip characters
+```
 
-Live Demo
+
+## Known Issues
+-Mobile keyboard input may behave unexpectedly
+-Very fast typing (>120 WPM) may occasionally skip characters
+
+##Live Demo
 🔗 https://akisha-dev.github.io/typing-test/
