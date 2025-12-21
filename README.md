@@ -2,6 +2,8 @@
 
 A minimalist typing speed test application built with vanilla JavaScript.
 
+---
+
 ## Features
 
 - Real-time typing feedback with color-coded accuracy
@@ -10,53 +12,40 @@ A minimalist typing speed test application built with vanilla JavaScript.
 - Clean, modern UI with responsive design
 - Backspace support for corrections
 
+---
+
 ## How It Works
 
-1. Click **Start** to begin the test
-2. Type the displayed text as accurately as possible
-3. Completed characters turn **white** (correct) or **red** (wrong)
-4. Press **Space** to move to the next word
-5. Use **Backspace** to correct mistakes
-6. View your results (Time, Accuracy, WPM) when finished
+1. Click **Start** to begin the test  
+2. Type the displayed text as accurately as possible  
+3. Completed characters turn **white** (correct) or **red** (wrong)  
+4. Press **Space** to move to the next word  
+5. Use **Backspace** to correct mistakes  
+6. View your results (Time, Accuracy, WPM) when finished  
+
+---
 
 ## Technologies Used
 
 - HTML5
-- CSS3 (with Montserrat font)
+- CSS3 (Montserrat font)
 - Vanilla JavaScript
 
+---
 
 ## Project Structure
 
+```text
 typing-test/
 │
-├── index.html # Main HTML structure
-├── design.css # Styling and responsive design
-├── script.js # Core typing logic
-└── README.md # Project documentation
+├── index.html      # Main HTML structure
+├── design.css      # Styling and responsive design
+├── script.js       # Core typing logic
+└── README.md       # Project documentation
+Known Issues
+Mobile keyboard input may behave unexpectedly
 
+Very fast typing (>120 WPM) may occasionally skip characters
 
-
-
-## Known Issues
-
-- Mobile keyboard input may behave unexpectedly
-- Very fast typing (>120 WPM) may occasionally skip characters
-
-## Future Improvements
-
-- Random word generation
-- Difficulty levels
-- Dark / light theme toggle
-- Leaderboard support
-- Multi-language typing support
-
-
-
-## Acknowledgments
-
-Inspired by Monkeytype and other typing test applications.
-
-## Live Demo
-
-[Try it here](https://akisha-dev.github.io/typing-test/)
+Live Demo
+🔗 https://akisha-dev.github.io/typing-test/
