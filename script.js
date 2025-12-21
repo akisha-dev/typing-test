@@ -16,8 +16,8 @@
         counter = 0
        totalKeystrokes = 0    
        startTime = null  
-  for(i=0;i<words.length;i++){
-    for(j=0;j<words[i].length;j++){
+  for(let i=0;i<words.length;i++){
+    for( let j=0;j<words[i].length;j++){
         let span = document.createElement('span');
         span.classList.add('untyped');
         span.textContent =words[i][j];
@@ -47,9 +47,11 @@
         counter = 0
         totalKeystrokes = 0    
        startTime = null  
-       
         document.querySelector('.display').innerHTML = '';
-        
+        document.querySelector('.result-js').style.display = 'none';
+        document.querySelector('.timetaken').innerHTML = '';
+        document.querySelector('.Accuracy').innerHTML = '';
+        document.querySelector('.wpm').innerHTML = '';
     }
     let wordIndex = 0;
     let characterIndex =0;
@@ -64,19 +66,22 @@
        if(startTime === null) {
         startTime = Date.now();  
     }
-        if(event.key!='Backspace'){
+        if(event.key!=='Backspace'){
         totalKeystrokes +=1;}
 
 if(event.key === 'Backspace') {
   
     if(spanIndex > 0) {
         allspans[spanIndex].classList.remove('cursor');
+         if(allspans[spanIndex - 1].classList.contains('correct')) {
+            counter -= 1;
+        }
         spanIndex -= 1;
 
         
         if(allspans[spanIndex].textContent === ' ') {
             wordIndex -= 1;
-            characterIndex = words[wordIndex].length-1;
+            characterIndex = words[wordIndex].length;
         } else {
             characterIndex -= 1;
         }
@@ -94,21 +99,23 @@ if(event.key === 'Backspace') {
 
 
 if(event.key === ' ') {
-
-if(characterIndex > 0 && wordIndex < words.length - 1) {
-    allspans[spanIndex].classList.remove('cursor');
-    
-    if(characterIndex === words[wordIndex].length) {
-        allspans[spanIndex].classList.replace('untyped','correct');
-        counter+=1;
-} else {
-    allspans[spanIndex].classList.replace('untyped','wrong');
-}
-        
+    if(characterIndex > 0 && wordIndex < words.length - 1) {
+        allspans[spanIndex].classList.remove('cursor');
+        if(characterIndex < words[wordIndex].length) {
+            let tempSpanIndex = spanIndex;
+            for(let i = characterIndex; i < words[wordIndex].length; i++) {
+                allspans[tempSpanIndex].classList.replace('untyped', 'wrong');
+                tempSpanIndex++;
+            }
+            spanIndex = tempSpanIndex;
+        }
+        allspans[spanIndex].classList.replace('untyped', 'correct');
         wordIndex += 1;
         characterIndex = 0;
         spanIndex += 1;
-        allspans[spanIndex].classList.add('cursor');
+        if(spanIndex < allspans.length) {
+            allspans[spanIndex].classList.add('cursor');
+        }
     }
     return;
 }
@@ -143,7 +150,7 @@ if(spanIndex >= allspans.length && startTime !== null&&!testComplete) {
     let accuracy = (counter / totalKeystrokes) * 100;
     let timetaken = (Date.now() - startTime) / 1000;
     let wpm = (totalKeystrokes / 5) / (timetaken / 60);
-    
+        document.querySelector('.result-js').style.display = 'block'; 
    document.querySelector('.timetaken').innerHTML=`Time : ${timetaken.toFixed(2)}`;
 document.querySelector('.Accuracy').innerHTML=`Accuracy : ${accuracy.toFixed(2)}%`;
 document.querySelector('.wpm').innerHTML=`WPM : ${wpm.toFixed(2)}`;}
