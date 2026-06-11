@@ -155,7 +155,24 @@ if(spanIndex >= allspans.length && startTime !== null&&!testComplete) {
         document.querySelector('.result-js').style.display = 'block'; 
    document.querySelector('.timetaken').innerHTML=`Time : ${timetaken.toFixed(2)}`;
 document.querySelector('.Accuracy').innerHTML=`Accuracy : ${accuracy.toFixed(2)}%`;
-document.querySelector('.wpm').innerHTML=`WPM : ${wpm.toFixed(2)}`;}
-}
+document.querySelector('.wpm').innerHTML=`WPM : ${wpm.toFixed(2)}`;
+const statData = {
+        username: "Guest",
+        accuracy: parseFloat(accuracy.toFixed(2)),
+        wpm: parseFloat(wpm.toFixed(2)),
+        timetaken: parseFloat(timetaken.toFixed(2))
+    };
 
-)
+    fetch('http://localhost:8000/api/stats', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(statData)
+    })
+    .then(response => response.json())
+    .then(data => console.log('Successfully saved to database:', data))
+    .catch(error => console.error('Error saving stats:', error));
+
+} 
+}); 
