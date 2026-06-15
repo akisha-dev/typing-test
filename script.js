@@ -163,7 +163,7 @@ const statData = {
         timetaken: parseFloat(timetaken.toFixed(2))
     };
 
-    fetch('http://localhost:8000/api/stats', {
+    fetch('https://typingflow-backend.onrender.com/api/stats', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
