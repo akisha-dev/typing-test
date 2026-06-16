@@ -151,12 +151,12 @@ if(spanIndex >= allspans.length && startTime !== null&&!testComplete) {
     testComplete = true;
     let accuracy = (counter / totalKeystrokes) * 100;
     let timetaken = (Date.now() - startTime) / 1000;
-    let wpm = (totalKeystrokes / 5) / (timetaken / 60);
-        document.querySelector('.result-js').style.display = 'block'; 
-   document.querySelector('.timetaken').innerHTML=`Time : ${timetaken.toFixed(2)}`;
-document.querySelector('.Accuracy').innerHTML=`Accuracy : ${accuracy.toFixed(2)}%`;
-document.querySelector('.wpm').innerHTML=`WPM : ${wpm.toFixed(2)}`;
-const statData = {
+    let wpm = (counter / 5) / (timetaken / 60);
+    document.querySelector('.result-js').style.display = 'block'; 
+    document.querySelector('.timetaken').innerHTML=`Time : ${timetaken.toFixed(2)}`;
+    document.querySelector('.Accuracy').innerHTML=`Accuracy : ${accuracy.toFixed(2)}%`;
+    document.querySelector('.wpm').innerHTML=`WPM : ${wpm.toFixed(2)}`;
+    const statData = {
         username: "Guest",
         accuracy: parseFloat(accuracy.toFixed(2)),
         wpm: parseFloat(wpm.toFixed(2)),
